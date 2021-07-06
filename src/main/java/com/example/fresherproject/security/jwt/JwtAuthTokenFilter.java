@@ -18,7 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-
+//xác thực Mã thông báo bằng cách sử dụng JwtProvider
 public class JwtAuthTokenFilter extends OncePerRequestFilter {
 
     @Autowired
@@ -29,6 +29,9 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtAuthTokenFilter.class);
 
+    //JwtAuthTokenFilter trích xuất tên người dùng / mật khẩu từ mã thông báo đã nhận bằng JwtProvider, sau đó dựa trên dữ liệu được trích xuất, JwtAuthTokenFilter:
+    //- tạo một AuthenticationToken (triển khai xác thực)
+    //- sử dụng AuthenticationToken làm đối tượng Xác thực và lưu trữ nó trong SecurityContext để sử dụng bộ lọc trong tương lai (ví dụ: bộ lọc Ủy quyền).
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {

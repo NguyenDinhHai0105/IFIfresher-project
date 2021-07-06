@@ -9,6 +9,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 import java.util.Date;
 
+// class này lấy tên người dùng từ đối tượng Xác thực,
+// sau đó xây dựng Mã thông báo JWT với tên người dùng, đối tượng Date (),
+// secretKey. JwtProvider cũng có thể được sử dụng để xác thực Mã thông báo JWT:
 @Component
 public class JwtProvider {
 
