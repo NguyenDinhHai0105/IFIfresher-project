@@ -18,15 +18,16 @@ public class JwtProvider {
     private static final Logger logger = LoggerFactory.getLogger(JwtProvider.class);
 
     @Value("${loizenai.app.jwtSecret}")
-    private String jwtSecret;
+    private String jwtSecret; // đoạn này bí mật chỉ có server biết
 
     @Value("${loizenai.app.jwtExpiration}")
-    private int jwtExpiration;
+    private int jwtExpiration; // thời gian hiệu lực của chuỗi jwt
 
     public String generateJwtToken(Authentication authentication) {
 
         UserPrinciple userPrincipal = (UserPrinciple) authentication.getPrincipal();
 
+        // tạo chuỗi jwt từ user
         return Jwts.builder()
                 .setSubject((userPrincipal.getUsername()))
                 .setIssuedAt(new Date())
@@ -54,6 +55,7 @@ public class JwtProvider {
         return false;
     }
 
+    // lấy thông tin  user từ token
     public String getUserNameFromJwtToken(String token) {
         return Jwts.parser()
                 .setSigningKey(jwtSecret)

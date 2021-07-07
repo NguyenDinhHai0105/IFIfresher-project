@@ -55,11 +55,17 @@ public class AuthRestAPIs {
     @PostMapping("/signin")
     public ResponseEntity authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
 
+        // xác thực từ username và password
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+                new UsernamePasswordAuthenticationToken(
+                        loginRequest.getUsername(),
+                        loginRequest.getPassword()));
 
+        // Nếu không xảy ra exception tức là thông tin hợp lệ
+        // Set thông tin authentication vào Security Context
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
+        // trả về jwt cho người dùng
         String jwt = jwtProvider.generateJwtToken(authentication);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 

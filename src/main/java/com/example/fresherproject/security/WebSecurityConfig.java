@@ -51,7 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
+    } // mã hóa mật khẩu
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

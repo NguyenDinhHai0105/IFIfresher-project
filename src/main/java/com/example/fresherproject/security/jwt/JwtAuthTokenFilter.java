@@ -19,6 +19,8 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.web.filter.OncePerRequestFilter;
 
 //xác thực Mã thông báo bằng cách sử dụng JwtProvider
+//class này có nhiệm vụ kiểm tra request của người dùng trước khi nó tới đích.
+// Nó sẽ lấy Header Authorization ra và kiểm tra xem chuỗi JWT người dùng gửi lên có hợp lệ không.
 public class JwtAuthTokenFilter extends OncePerRequestFilter {
 
     @Autowired
@@ -36,12 +38,14 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         try {
-
+            // lấy jwt từ request
             String jwt = getJwt(request);
             if (jwt != null && tokenProvider.validateJwtToken(jwt)) {
+                //lấy user name từ chuỗi jwt
                 String username = tokenProvider.getUserNameFromJwtToken(jwt);
-
+                // lấy thông tin người dùng từ username
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+                // nếu người dùng hợp lệ, set thông tin cho Security context
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
@@ -57,7 +61,7 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter {
 
     private String getJwt(HttpServletRequest request) {
         String authHeader = request.getHeader("Authorization");
-
+        // kiểm tra xem header Authorization có chứa thông tin jwt không
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             return authHeader.replace("Bearer ", "");
         }
