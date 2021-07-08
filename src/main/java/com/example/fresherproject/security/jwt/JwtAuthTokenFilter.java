@@ -31,7 +31,8 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtAuthTokenFilter.class);
 
-    //JwtAuthTokenFilter trích xuất tên người dùng / mật khẩu từ mã thông báo đã nhận bằng JwtProvider, sau đó dựa trên dữ liệu được trích xuất, JwtAuthTokenFilter:
+    //JwtAuthTokenFilter trích xuất tên người dùng / mật khẩu từ mã thông báo đã nhận bằng JwtProvider,
+    // sau đó dựa trên dữ liệu được trích xuất, JwtAuthTokenFilter:
     //- tạo một AuthenticationToken (triển khai xác thực)
     //- sử dụng AuthenticationToken làm đối tượng Xác thực và lưu trữ nó trong SecurityContext để sử dụng bộ lọc trong tương lai (ví dụ: bộ lọc Ủy quyền).
     @Override
