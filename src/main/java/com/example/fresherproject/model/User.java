@@ -1,6 +1,8 @@
 package com.example.fresherproject.model;
 
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -47,6 +49,12 @@ public class User{
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_enroll_test",
+                joinColumns = @JoinColumn(name = "user_id"),
+                inverseJoinColumns = @JoinColumn(name = "test_id"))
+    private Set<Tests> tests;
 
     public User() {}
 
