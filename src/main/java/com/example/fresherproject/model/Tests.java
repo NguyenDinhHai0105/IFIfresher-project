@@ -8,6 +8,8 @@ import lombok.Data;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity(name = "tests")
@@ -35,7 +37,7 @@ public class Tests {
     @JoinTable(name = "tests_questions",
                         joinColumns = @JoinColumn(name = "test_id"),
                         inverseJoinColumns = @JoinColumn(name = "question_id"))
-    private Set<Questions> questions;
+    private List<Questions> questions;
 
     public Tests() {
 

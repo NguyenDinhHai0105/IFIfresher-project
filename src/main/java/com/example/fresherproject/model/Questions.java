@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity(name = "questions")
@@ -32,7 +33,8 @@ public class Questions {
     private String img;
 
     @ManyToMany(mappedBy = "questions")
-    private Set<Tests> tests;
+    @JsonIgnore
+    private List<Tests> tests;
 
     public Questions() {
 
@@ -45,5 +47,10 @@ public class Questions {
         this.answer_c = answer_c;
         this.answer_d = answer_d;
         this.correct_answer = correct_answer;
+    }
+
+    @JsonIgnore
+    public List<Tests> getTests() {
+        return tests;
     }
 }
