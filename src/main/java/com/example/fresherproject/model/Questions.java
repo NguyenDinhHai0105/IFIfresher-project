@@ -1,7 +1,7 @@
 package com.example.fresherproject.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -12,6 +12,7 @@ import java.util.Set;
 @Entity(name = "questions")
 @Data
 @AllArgsConstructor
+@JsonView(Views.Public.class)
 public class Questions {
 
     @Id
@@ -28,6 +29,8 @@ public class Questions {
 
     private String answer_d;
 
+//    @JsonIgnore // để dữ liệu gửi đi không kèm theo đáp án
+    @JsonView(Views.Private.class)
     private String correct_answer;
 
     private String img;
@@ -49,8 +52,4 @@ public class Questions {
         this.correct_answer = correct_answer;
     }
 
-    @JsonIgnore
-    public List<Tests> getTests() {
-        return tests;
-    }
 }

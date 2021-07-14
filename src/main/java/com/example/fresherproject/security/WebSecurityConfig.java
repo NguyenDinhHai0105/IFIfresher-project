@@ -38,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder
-                .userDetailsService(userDetailsService) // cung cấp userDetailsService cho sprig security
+                .userDetailsService(userDetailsService) // cung cấp userDetailsService cho spring security
                 .passwordEncoder(passwordEncoder());
     }
 
@@ -61,6 +61,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 authorizeRequests()
                 .antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/api/tests/**").permitAll()
+                .antMatchers("/api/questions/**").permitAll()
+                .antMatchers("/home/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
