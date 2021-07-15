@@ -7,13 +7,14 @@ import com.example.fresherproject.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@Service
+@RestController
 public class QuestionServiceImpl implements QuestionService {
 
     @Autowired
@@ -39,7 +40,7 @@ public class QuestionServiceImpl implements QuestionService {
          Questions updateQuestion = questionRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("question not found with id: " + id));
          updateQuestion.setQuestion(question.getQuestion());
          updateQuestion.setAnswer_a(question.getAnswer_a());
-         updateQuestion.setAnswer_b(question.getAnswer_b());
+         updateQuestion.setAnswer_b(question.getAnswer_b()) ;
          updateQuestion.setAnswer_c(question.getAnswer_c());
          updateQuestion.setAnswer_d(question.getAnswer_d());
          updateQuestion.setCorrect_answer(question.getCorrect_answer());

@@ -2,7 +2,9 @@ package com.example.fresherproject.controller;
 
 import com.example.fresherproject.exception.ResourceNotFoundException;
 import com.example.fresherproject.model.Questions;
+import com.example.fresherproject.model.Views;
 import com.example.fresherproject.service.QuestionService;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +24,7 @@ public class QuestionController {
     }
 
     @GetMapping("/{id}")
+    @JsonView(Views.Public.class)
     public Optional<Questions> getQuestionById(@PathVariable Long id) { // lấy ques bằng id, đã chạy
         return questionService.getQuestionById(id);
     }
