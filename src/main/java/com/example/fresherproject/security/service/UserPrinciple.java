@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+// mặc định spring security dùng 1 clashh UserDetails để toàn bộ lưu thông tin về người dùng, class UserPrinciple kế thừa
+//UserDetails giúp chuyển toàn bộ thông tin user thành UserDetails
 public class UserPrinciple implements UserDetails {
     private static final long serialVersionUID = 1L;
 
