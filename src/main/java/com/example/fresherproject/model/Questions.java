@@ -29,8 +29,7 @@ public class Questions {
 
     private String answer_d;
 
-//    @JsonIgnore // để dữ liệu gửi đi không kèm theo đáp án
-    @JsonView(Views.Private.class)
+    //@JsonView(Views.Private.class)
     private String correct_answer;
 
     private String img;
