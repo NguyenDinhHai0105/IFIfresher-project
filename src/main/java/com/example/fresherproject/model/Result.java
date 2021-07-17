@@ -1,9 +1,6 @@
 package com.example.fresherproject.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -16,9 +13,10 @@ public class Result {
 
     private Long test_id;
 
+    private Long question_id;
+
     private Long core;
 
-    private Long question_id;
     private String user_answer;
 
 }

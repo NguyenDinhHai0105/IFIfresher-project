@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@RestController
+@Service
 public class QuestionServiceImpl implements QuestionService {
 
     @Autowired
