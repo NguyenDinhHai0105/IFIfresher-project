@@ -19,4 +19,8 @@ public class Result {
 
     private String user_answer;
 
+//    @ManyToOne
+//    @JoinColumn(name = "id", insertable = false, updatable = false)
+//    private User user;
+
 }
