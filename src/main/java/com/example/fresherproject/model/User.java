@@ -56,6 +56,9 @@ public class User{
                 inverseJoinColumns = @JoinColumn(name = "test_id"))
     private List<Tests> tests;
 
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//    List<Result> user_answers;
+
     public User() {}
 
     public User(String name, String username, String email, String password) {
