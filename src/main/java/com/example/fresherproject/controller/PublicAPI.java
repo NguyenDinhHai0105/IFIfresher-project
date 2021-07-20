@@ -23,7 +23,7 @@ public class PublicAPI {
     }
 
     @JsonView(Views.Public.class)
-    @GetMapping("/{id}") // lấy tất cả bài test
+    @GetMapping("/{id}") // lấy bài test qua id
     public Optional<Tests> getTestById(@PathVariable Long id) {
         return testService.getTestById(id);
     }
