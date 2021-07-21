@@ -23,6 +23,11 @@ public class QuestionController {
         return questionService.getAllQuestions();
     }
 
+    @GetMapping("/random")
+    public List<Optional<Questions>> getRandomTest() { // lấy hết question, đã chạy
+        return questionService.getRandomQuestions();
+    }
+
     @GetMapping("/{id}")
     @JsonView(Views.Public.class)
     public Optional<Questions> getQuestionById(@PathVariable Long id) { // lấy ques bằng id, đã chạy

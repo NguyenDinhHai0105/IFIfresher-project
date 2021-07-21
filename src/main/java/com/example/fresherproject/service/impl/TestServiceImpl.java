@@ -1,23 +1,25 @@
 package com.example.fresherproject.service.impl;
 
 import com.example.fresherproject.exception.ResourceNotFoundException;
+import com.example.fresherproject.model.Questions;
 import com.example.fresherproject.model.Tests;
+import com.example.fresherproject.repository.QuestionRepository;
 import com.example.fresherproject.repository.TestRepository;
 import com.example.fresherproject.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class TestServiceImpl implements TestService {
 
     @Autowired
     TestRepository testRepository;
+
+    @Autowired
+    QuestionRepository questionRepository;
 
     @Override
     public void addTest(Tests tests) {
@@ -56,4 +58,7 @@ public class TestServiceImpl implements TestService {
         response.put("updated", Boolean.TRUE);
         return ResponseEntity.ok(response);
     }
+
+
+
 }
