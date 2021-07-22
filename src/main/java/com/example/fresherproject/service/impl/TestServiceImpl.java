@@ -63,7 +63,7 @@ public class TestServiceImpl implements TestService {
     @Override
     public Optional<Tests> getRandomTest() {
         List<Questions> questions = questionService.getRandomQuestions();
-        Optional<Tests> test = Optional.of(new Tests(12, questions));
+        Optional<Tests> test = Optional.of(new Tests(20, questions));
         return test;
     }
 
