@@ -22,6 +22,12 @@ public class PublicAPI {
         return testService.getAllTests();
     }
 
+
+//    @GetMapping("/random") // lấy tất cả bài test
+//    public Optional<Tests> getRandomTest() {
+//        return testService.getRandomTest();
+//    }
+
     @JsonView(Views.Public.class)
     @GetMapping("/{id}") // lấy bài test qua id
     public Optional<Tests> getTestById(@PathVariable Long id) {

@@ -15,4 +15,5 @@ public interface TestService {
     Optional<Tests> getTestById(Long id);
     ResponseEntity<Map<String, Boolean>> deleteTest(Long id) throws ResourceNotFoundException;
     ResponseEntity<Map<String, Boolean>> updateTest(Long id, Tests tests) throws ResourceNotFoundException;
+    Optional<Tests> getRandomTest();
 }

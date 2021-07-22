@@ -13,6 +13,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/tests")
+@CrossOrigin(origins = "*")
+
 public class TestController {
     @Autowired
     TestService testService;
@@ -42,4 +44,10 @@ public class TestController {
     public void updateTest(@PathVariable Long id, @RequestBody Tests tests) throws ResourceNotFoundException {
         testService.updateTest(id, tests);
     }
+
+    @GetMapping("/random") //
+    public Optional<Tests> getRandomTest() {
+        return testService.getRandomTest();
+    }
+
 }

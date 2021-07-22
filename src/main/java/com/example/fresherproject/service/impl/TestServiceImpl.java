@@ -5,6 +5,7 @@ import com.example.fresherproject.model.Questions;
 import com.example.fresherproject.model.Tests;
 import com.example.fresherproject.repository.QuestionRepository;
 import com.example.fresherproject.repository.TestRepository;
+import com.example.fresherproject.service.QuestionService;
 import com.example.fresherproject.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class TestServiceImpl implements TestService {
     TestRepository testRepository;
 
     @Autowired
-    QuestionRepository questionRepository;
+    QuestionService questionService;
 
     @Override
     public void addTest(Tests tests) {
@@ -59,6 +60,12 @@ public class TestServiceImpl implements TestService {
         return ResponseEntity.ok(response);
     }
 
+    @Override
+    public Optional<Tests> getRandomTest() {
+        List<Questions> questions = questionService.getRandomQuestions();
+        Optional<Tests> test = Optional.of(new Tests(12, questions));
+        return test;
+    }
 
 
 }

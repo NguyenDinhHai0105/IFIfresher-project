@@ -25,7 +25,7 @@ public class QuestionController {
     }
 
     @GetMapping("/random")
-    public List<Optional<Questions>> getRandomTest() { // lấy hết question, đã chạy
+    public List<Questions> getRandomTest() { // lấy hết question, đã chạy
         return questionService.getRandomQuestions();
     }
 

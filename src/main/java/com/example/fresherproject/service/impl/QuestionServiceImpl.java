@@ -4,14 +4,11 @@ import com.example.fresherproject.exception.ResourceNotFoundException;
 import com.example.fresherproject.model.Questions;
 import com.example.fresherproject.repository.QuestionRepository;
 import com.example.fresherproject.service.QuestionService;
-import org.aspectj.weaver.patterns.TypePatternQuestions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 
@@ -62,19 +59,19 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<Optional<Questions>> getRandomQuestions() {
-        List<Optional<Questions>> test = new ArrayList<>();
+    public List<Questions> getRandomQuestions() {
+        List<Questions> questions = new ArrayList<>();
         long qty = questionRepository.count();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
             int index = (int) (Math.random() * qty);
             Page<Questions> questionPage = questionRepository.findAll(PageRequest.of(index, 1));
-            Optional<Questions> q = null;
+            Questions q = null;
             if (questionPage.hasContent()) {
-                q = Optional.ofNullable(questionPage.getContent().get(0));
-                test.add(q);
+                q = questionPage.getContent().get(0);
+                questions.add(q);
             }
         }
-        return test;
+        return questions;
     }
 
 }

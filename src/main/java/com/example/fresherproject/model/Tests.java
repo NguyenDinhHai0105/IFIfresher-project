@@ -49,4 +49,9 @@ public class Tests {
         this.test_time = test_time;
         this.number_of_questions = number_of_questions;
     }
+
+    public Tests(Integer test_time, List<Questions> questions) {
+        this.test_time = test_time;
+        this.questions = questions;
+    }
 }

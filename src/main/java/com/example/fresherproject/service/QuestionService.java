@@ -16,6 +16,6 @@ public interface QuestionService {
     Optional<Questions> getQuestionById(Long id);
     ResponseEntity<Map<String, Boolean>> updateQuestion (Questions questions, Long id) throws ResourceNotFoundException;
     ResponseEntity<Map<String, Boolean>> deleteQuestion (Long id) throws ResourceNotFoundException;
-    List<Optional<Questions>> getRandomQuestions();
+    List<Questions> getRandomQuestions();
 
 }
