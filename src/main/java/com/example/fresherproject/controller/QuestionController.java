@@ -24,10 +24,10 @@ public class QuestionController {
         return questionService.getAllQuestions();
     }
 
-    @GetMapping("/random")
-    public List<Questions> getRandomTest() { // lấy hết question, đã chạy
-        return questionService.getRandomQuestions();
-    }
+//    @GetMapping("/random")
+//    public List<Questions> getRandomTest() { // lấy hết question, đã chạy
+//        return questionService.getRandomQuestions();
+//    }
 
     @GetMapping("/{id}")
     @JsonView(Views.Public.class)
