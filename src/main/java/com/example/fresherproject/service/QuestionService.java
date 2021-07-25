@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Service
 public interface QuestionService {
-    void addQuestion(Questions question);
+    void addQuestion(List<Questions> question);
     List<Questions> getAllQuestions();
     Optional<Questions> getQuestionById(Long id);
     ResponseEntity<Map<String, Boolean>> updateQuestion (Questions questions, Long id) throws ResourceNotFoundException;

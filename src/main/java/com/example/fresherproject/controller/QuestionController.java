@@ -36,8 +36,8 @@ public class QuestionController {
     }
 
     @PostMapping("")
-    public void addQuestion (@RequestBody Questions question){ // thêm ques // đã chạy
-        questionService.addQuestion(question);
+    public void addQuestion (@RequestBody List<Questions> questions){ // thêm ques // đã chạy
+        questionService.addQuestion(questions);
     }
 
     @PutMapping("/{id}")

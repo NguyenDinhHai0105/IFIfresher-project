@@ -19,8 +19,8 @@ public class QuestionServiceImpl implements QuestionService {
     QuestionRepository questionRepository;
 
     @Override
-    public void addQuestion(Questions question) {
-        questionRepository.save(question);
+    public void addQuestion(List<Questions> question) {
+        questionRepository.saveAll(question);
     }
 
     @Override
