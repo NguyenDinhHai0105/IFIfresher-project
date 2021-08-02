@@ -4,11 +4,13 @@ import com.example.fresherproject.exception.ResourceNotFoundException;
 import com.example.fresherproject.model.Questions;
 import com.example.fresherproject.model.Tests;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+@Service
 public interface TestService {
     void addTest(Tests tests);
     List<Tests> getAllTests();

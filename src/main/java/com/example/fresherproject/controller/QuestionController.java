@@ -6,6 +6,8 @@ import com.example.fresherproject.model.Views;
 import com.example.fresherproject.service.QuestionService;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,6 +37,11 @@ public class QuestionController {
         return questionService.getQuestionById(id);
     }
 
+    @GetMapping("/page")
+    public Page<Questions> getQuestionsByPage(Pageable pageable) {
+        return questionService.getQuestionsByPage(pageable);
+    }
+
     @PostMapping("")
     public void addQuestion (@RequestBody List<Questions> questions){ // thêm ques // đã chạy
         questionService.addQuestion(questions);
@@ -50,5 +57,10 @@ public class QuestionController {
     @DeleteMapping("/{id}")
     public void deleteQuestion(@PathVariable Long id) throws ResourceNotFoundException {
         questionService.deleteQuestion(id); // xóa ques, chỉ xóa đc quest chưa thuộc về đề thi nào
+    }
+
+    @GetMapping("/search")
+    public List<Questions> searchQuestion(String input) {
+        return questionService.searchQuestion(input);
     }
 }

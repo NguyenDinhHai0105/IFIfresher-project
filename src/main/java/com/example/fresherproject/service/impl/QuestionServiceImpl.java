@@ -7,6 +7,7 @@ import com.example.fresherproject.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -51,7 +52,8 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public ResponseEntity<Map<String, Boolean>> deleteQuestion(Long id) throws ResourceNotFoundException {
-        Questions questionNeedDel = questionRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("question not found with id: " + id));
+        Questions questionNeedDel = questionRepository.findById(id).orElseThrow(()
+                -> new ResourceNotFoundException("question not found with id: " + id));
         questionRepository.delete(questionNeedDel);
         Map<String, Boolean> response = new HashMap<>();
         response.put("updated", Boolean.TRUE);
@@ -61,10 +63,12 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public List<Questions> getRandomQuestions() {
         List<Questions> questions = new ArrayList<>();
-        long qty = questionRepository.count();
-        for (int i = 0; i < 2; i++) {
-            int index = (int) (Math.random() * qty);
-            Page<Questions> questionPage = questionRepository.findAll(PageRequest.of(index, 1));
+        long qty = questionRepository.count(); // tổng số bản ghi các questions trong db
+        for (int i = 0; i < 20; i++) {
+            int index = (int) (Math.random() * qty); // đặt số ngẫu nhiên cho index trong khoảng qty
+
+            Page<Questions> questionPage = questionRepository.findAll(PageRequest.of(index, 1));// lấy về 1 trang gồm 1 bản ghi, làm như vầy
+            // để tối ưu hiệu xuất thay vì dùng ramdom trong hql
             Questions q = null;
             if (questionPage.hasContent()) {
                 q = questionPage.getContent().get(0);
@@ -73,5 +77,18 @@ public class QuestionServiceImpl implements QuestionService {
         }
         return questions;
     }
+
+    @Override
+    public Page<Questions> getQuestionsByPage(Pageable pageable) {
+        Page<Questions> page = questionRepository.findAll(pageable);
+//        List<Questions> questions = page.getContent();
+        return page;
+    }
+
+    @Override
+    public List<Questions> searchQuestion(String input) {
+        return questionRepository.findAllByQuestionIgnoreCaseLike(input + "%");
+    }
+
 
 }
