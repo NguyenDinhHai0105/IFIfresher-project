@@ -51,9 +51,7 @@ public class TestServiceImpl implements TestService {
         Tests tests = testRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("id not found: " + id));
         tests.setTest_name(testsDetails.getTest_name());
         tests.setTest_time(testsDetails.getTest_time());
-        tests.setNumber_of_questions(testsDetails.getNumber_of_questions());
         tests.setCreat_at(testsDetails.getCreat_at());
-        tests.setQuestions(testsDetails.getQuestions());
         testRepository.save(tests);
         Map<String, Boolean> response = new HashMap<>();
         response.put("updated", Boolean.TRUE);

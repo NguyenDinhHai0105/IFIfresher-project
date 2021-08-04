@@ -63,4 +63,9 @@ public class QuestionController {
     public List<Questions> searchQuestion(String input) {
         return questionService.searchQuestion(input);
     }
+
+    @PostMapping("/add-ques-to-test")
+    public void addQuestionToTest (@RequestBody Haitac haitac) throws ResourceNotFoundException {
+        questionService.addQuestionToTest(haitac.getQuesId(), haitac.getTestId());
+    }
 }

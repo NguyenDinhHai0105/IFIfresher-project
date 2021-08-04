@@ -1,14 +1,22 @@
 package com.example.fresherproject.controller;
 
 public class Haitac {
-    private String hai;
-    private String tac;
+    private Long quesId;
+    private Long testId;
 
-    public void setHai(String hai) {
-        this.hai = hai;
+    public void setQuesId(Long quesId) {
+        this.quesId = quesId;
     }
 
-    public void setTac(String tac) {
-        this.tac = tac;
+    public void setTestId(Long testId) {
+        this.testId = testId;
+    }
+
+    public Long getQuesId() {
+        return quesId;
+    }
+
+    public Long getTestId() {
+        return testId;
     }
 }

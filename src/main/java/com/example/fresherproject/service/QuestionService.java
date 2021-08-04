@@ -21,5 +21,5 @@ public interface QuestionService {
     List<Questions> getRandomQuestions();
     Page<Questions> getQuestionsByPage(Pageable pageable);
     List<Questions> searchQuestion(String input);
-
+    void addQuestionToTest(Long questionId, Long testId) throws ResourceNotFoundException;
 }

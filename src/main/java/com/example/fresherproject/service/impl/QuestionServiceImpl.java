@@ -2,7 +2,9 @@ package com.example.fresherproject.service.impl;
 
 import com.example.fresherproject.exception.ResourceNotFoundException;
 import com.example.fresherproject.model.Questions;
+import com.example.fresherproject.model.Tests;
 import com.example.fresherproject.repository.QuestionRepository;
+import com.example.fresherproject.repository.TestRepository;
 import com.example.fresherproject.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,6 +20,9 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Autowired
     QuestionRepository questionRepository;
+
+    @Autowired
+    TestRepository testRepository;
 
     @Override
     public void addQuestion(List<Questions> question) {
@@ -87,7 +92,16 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public List<Questions> searchQuestion(String input) {
-        return questionRepository.findAllByQuestionIgnoreCaseLike(input + "%");
+        return questionRepository.findAllByQuestionIgnoreCaseLike("%" + input + "%");
+    }
+
+    @Override
+    public void addQuestionToTest(Long questionId, Long testId) throws ResourceNotFoundException {
+        Tests test = testRepository.findById(testId).orElseThrow(()-> new ResourceNotFoundException("Test not found with id: " + testId));
+        Questions question = questionRepository.findById(questionId).orElseThrow(()-> new ResourceNotFoundException("Test not found with id: " + testId));
+        test.getQuestions().add(question);
+        test.setNumber_of_questions(test.getNumber_of_questions()+1);
+        testRepository.save(test);
     }
 
 
