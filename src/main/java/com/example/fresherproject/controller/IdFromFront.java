@@ -1,6 +1,6 @@
 package com.example.fresherproject.controller;
 
-public class Haitac {
+public class IdFromFront {
     private Long quesId;
     private Long testId;
 

@@ -65,7 +65,7 @@ public class QuestionController {
     }
 
     @PostMapping("/add-ques-to-test")
-    public void addQuestionToTest (@RequestBody Haitac haitac) throws ResourceNotFoundException {
-        questionService.addQuestionToTest(haitac.getQuesId(), haitac.getTestId());
+    public void addQuestionToTest (@RequestBody IdFromFront idFromFront) throws ResourceNotFoundException {
+        questionService.addQuestionToTest(idFromFront.getQuesId(), idFromFront.getTestId());
     }
 }
