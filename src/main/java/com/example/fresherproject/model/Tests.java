@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
+import org.hibernate.engine.internal.Cascade;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -34,7 +35,7 @@ public class Tests {
     @ManyToMany(mappedBy = "tests")
     private Set<User> users;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = {CascadeType.DETACH,  CascadeType.PERSIST, CascadeType.MERGE} )
     @JoinTable(name = "tests_questions",
                         joinColumns = @JoinColumn(name = "test_id"),
                         inverseJoinColumns = @JoinColumn(name = "question_id"))

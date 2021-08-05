@@ -99,8 +99,9 @@ public class QuestionServiceImpl implements QuestionService {
     public void addQuestionToTest(Long questionId, Long testId) throws ResourceNotFoundException {
         Tests test = testRepository.findById(testId).orElseThrow(()-> new ResourceNotFoundException("Test not found with id: " + testId));
         Questions question = questionRepository.findById(questionId).orElseThrow(()-> new ResourceNotFoundException("Test not found with id: " + testId));
+        Questions question1 = new Questions(question.getQuestion(), question.getAnswer_a(), question.getAnswer_b(), question.getAnswer_c(), question.getAnswer_d(), question.getCorrect_answer(), question.getImg());
         test.getQuestions().add(question);
-        test.setNumber_of_questions(test.getNumber_of_questions()+1);
+        test.setNumber_of_questions(test.getQuestions().size());
         testRepository.save(test);
     }
 

@@ -51,4 +51,14 @@ public class Questions {
         this.correct_answer = correct_answer;
     }
 
+    public Questions(String question, String answer_a, String answer_b, String answer_c, String answer_d, String correct_answer, String img) {
+        this.question = question;
+        this.answer_a = answer_a;
+        this.answer_b = answer_b;
+        this.answer_c = answer_c;
+        this.answer_d = answer_d;
+        this.correct_answer = correct_answer;
+        this.img = img;
+    }
+
 }
